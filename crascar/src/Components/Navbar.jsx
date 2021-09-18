@@ -1,22 +1,34 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Links, Logo, Nav, NavCont} from './Navbarstyle';
 
 function Navbar() {
     return (
-        <div>
-            <Link to='/'>
+        <NavCont>
+            <Logo>
+                <img src='' alt='crascar logo'/>
+            </Logo>
+            <Nav>
+            <Links to='/'>
                 HOME
-            </Link>
-            <Link to='/crashview'>
+            </Links>
+            <Links to='/carview'>
                CRASH VIEW
-            </Link>
-            <Link to='/about'>
+            </Links>
+            <Links to='/about'>
                ABOUT
-            </Link>
-            <Link to='/contact'>
+            </Links>
+            <Links to='/contact'>
                CONTACTS
-            </Link>
-        </div>
+            </Links>
+            <Links>
+               Sign Up
+            </Links>
+            <Links>
+               Register
+            </Links>
+            </Nav>
+        </NavCont>
     )
 }
 
