@@ -1,18 +1,21 @@
 import React from 'react';
-import {Routes, Switch, Route} from 'react-router-dom';
-import { CarTabular } from './CarTabular';
+import {  Switch, Route} from 'react-router-dom';
+
+import { CarView } from './CarView';
 import { Home } from './Home';
+import { Navbar } from './Navbar';
 
 function Routes() {
     return (
         <div>
-            <Routes>
+            <Navbar/>
                 <Switch>
+                   
                     <Route exact path='/'>
                          <Home/>
                     </Route>
                     <Route path='/carview'>
-                        <CarTabular/>
+                        <CarView/>
                     </Route>
                     <Route path='/about'>
 
@@ -21,7 +24,7 @@ function Routes() {
                         
                     </Route>
                 </Switch>
-            </Routes>
+           
         </div>
     )
 }
