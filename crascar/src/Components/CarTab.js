@@ -55,6 +55,8 @@ export const Table = styled.table`
 
   margin-left: 220px;
   width: 800px;
+  border-radius:5px;
+  background-color: #737CA1;
 `;
 
 export const Filter = styled.div`
@@ -84,6 +86,15 @@ export const DataView = styled.h3`
   padding-top: 10px;
 
 `;
+
+export const FilterBtn = styled.button` 
+
+margin-top: 50px;
+width:235px;
+height: 50px;
+cursor:pointer
+
+`
 
 export const Span = styled.span`
   padding-left: 30px;
