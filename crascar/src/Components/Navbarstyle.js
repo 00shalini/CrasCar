@@ -33,10 +33,9 @@ export const Links = styled(Link)`
 
 margin-left: 80px;
 text-decoration: none;
-color: black;
 font-weight: 600;
 font-size: 16px;
-color: darkgrey;
+color: white;
 `
 
 export const Img = styled.img` 
