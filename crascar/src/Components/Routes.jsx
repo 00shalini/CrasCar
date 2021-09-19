@@ -1,5 +1,6 @@
 import React from 'react';
 import {  Switch, Route} from 'react-router-dom';
+import { CardDetail } from './CardDetail';
 
 import { CarView } from './CarView';
 import { Home } from './Home';
@@ -23,6 +24,9 @@ function Routes() {
                     <Route path='/contact'>
                         
                     </Route>
+                    <Route path='/carview/:id'>
+                        <CardDetail />
+                     </Route>   
                 </Switch>
            
         </div>
