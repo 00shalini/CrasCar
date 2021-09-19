@@ -11,6 +11,7 @@ export const OptionBar = styled.div`
   grid-template-columns: repeat(3, 1fr);
   position: fixed;
   margin-top: -110px;
+  z-index:10
 `;
 
 export const Option = styled.div`
@@ -56,14 +57,14 @@ export const Table = styled.table`
   margin-left: 220px;
   width: 800px;
   border-radius:5px;
-  background-color: #737CA1;
+  background-color: #95B9C7;
 `;
 
 export const Filter = styled.div`
 
   margin-left: 40px;
   width: 300px;
-  z-index: -1;
+  z-index: 1;
   padding-top: 50px;
 `;
 

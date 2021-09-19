@@ -56,20 +56,30 @@ function CarTabular() {
       <Details>
         <Table>
           <thead>
-            <tr style={{textAlign:'center'}}>
-              <th style={{borderBottom:'2px solid navy',height:'40px',padding:'3px 3px'}}>Vehicle_Type_Code_1</th>
-              <th style={{borderBottom:'2px solid navy'}}>Vehicle_Type_Code_2</th>
-              <th style={{borderBottom:'2px solid navy'}}>Crash_Date</th>
-              <th style={{borderBottom:'2px solid navy'}}>Crash_Time</th>
+            <tr style={{ textAlign: "center" }}>
+              <th
+                style={{
+                  borderBottom: "2px solid navy",
+                  height: "40px",
+                  padding: "3px 3px",
+                }}
+              >
+                Vehicle_Type_Code_1
+              </th>
+              <th style={{ borderBottom: "2px solid navy" }}>
+                Vehicle_Type_Code_2
+              </th>
+              <th style={{ borderBottom: "2px solid navy" }}>Crash_Date</th>
+              <th style={{ borderBottom: "2px solid navy" }}>Crash_Time</th>
             </tr>
           </thead>
           <tbody>
             {displaydata.length > 0 ? (
               displaydata.map((item) => {
                 return (
-                  <tr style={{textAlign:'center',height:'50px'}}>
+                  <tr style={{ textAlign: "center", height: "50px" }}>
                     <td>{item.vehicle_type_code1}</td>
-                    <td >{item.vehicle_type_code2}</td>
+                    <td>{item.vehicle_type_code2}</td>
                     <td>{item.crash_date}</td>
                     <td>{item.crash_time}</td>
                   </tr>
@@ -100,7 +110,7 @@ function CarTabular() {
                   setValue(date);
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                style={{marginBottom:'40px'}}
+                style={{ marginBottom: "40px" }}
               />
               <DesktopTimePicker
                 label="Filter By Crash Time"
@@ -112,7 +122,6 @@ function CarTabular() {
                   var t = `${hr}:${min}`;
 
                   setTime(t);
-              
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />

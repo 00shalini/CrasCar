@@ -18,8 +18,26 @@ import DesktopTimePicker from "@mui/lab/DesktopTimePicker";
 import ReactPaginate from "react-paginate";
 import "./CarTab.css";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 
 function CarCard() {
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "#2B3856",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+    borderRadius: 5,
+    color: "white",
+  };
+
   const [car, setCar] = React.useState([]);
   const [value, setValue] = React.useState("");
   const [timing, setTime] = React.useState("");
@@ -75,42 +93,134 @@ function CarCard() {
   const changepage = ({ selected }) => {
     setPageNum(selected);
   };
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Option>
       <Header>AUTOMOBILE CRASH DETAILS</Header>
       <Details>
-        <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="parent-modal-title"
+          aria-describedby="parent-modal-description"
+        >
+          <Box sx={{ ...style, width: 1200 }}>
+            {car.map((item) => {
+              if (collisionid === item.collision_id) {
+                return (
+                  <div key={item.collision_id} id={item.collision_id}>
+                    <table>
+                      <tr>
+                        <th>Collision_id</th>
+                        <td>{item.collision_id}</td>
+                      </tr>
+                      <tr>
+                        <th> Vehicle Type Code 1 </th>
+                        <td>{item.vehicle_type_code1}</td>
+                      </tr>
+                      <tr>
+                        <th>Vehicle Type Code 2</th>
+                        <td>{item.vehicle_type_code2}</td>
+                      </tr>
+                      <tr>
+                        <th>Borough</th>
+                        <td>{item.borough}</td>
+                      </tr>
+                      <tr>
+                        <th>ZipCode</th> <td>{item.zip_code}</td>
+                      </tr>
+                      <tr>
+                        <th>Crash Date </th>
+                        <td>{item.crash_date}</td>
+                      </tr>
+                      <tr>
+                        <th>Crash Time</th>
+                        <td>{item.crash_time}</td>
+                      </tr>
+
+                      <tr>
+                        Cross Street Name:<td>{item.cross_sreet_name}</td>
+                      </tr>
+                      <tr>
+                        
+                        Location:<th>Latitude </th>
+                        <td>{item.latitude}</td>
+                        <th>Longitude</th>
+                        <td>{item.longitude}</td>
+                      </tr>
+
+                      <tr>
+                        <th>No. of persons Injured</th>
+                        <td>{item.number_of_persons_injured}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of persons Killed</th>
+                        <td>{item.number_of_persons_killed}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of pedestrians Injured</th>
+                        <td>{item.number_of_pedestrians_injured}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of pedestrians Killed</th>
+                        <td>{item.number_of_pedestrians_killed}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of cyclist Injured</th>
+                        <td>{item.number_of_cyclist_injured}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of cyclist Killed</th>
+                        <td>{item.number_of_cyclist_killed}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of motorist Injured</th>
+                        <td>{item.number_of_motorist_injured}</td>
+                      </tr>
+                      <tr>
+                        <th>No. of motorist Killed</th>
+                        <td>{item.number_of_motorist_killed}</td>
+                      </tr>
+                      <tr>
+                        <th>Contributing Factor Vehicle 1</th>
+                        <td>{item.contributing_factor_vehicle_1}</td>
+                      </tr>
+                    </table>
+                  </div>
+                );
+              }
+            })}
+          </Box>
+        </Modal>
+        <div onClick={handleOpen}>
           {displaydata.length > 0 ? (
             displaydata.map((item) => {
               return (
-                <Link
-                  to={`/carview/${collisionid}`}
-                  style={{ textDecoration: "none", border: "1px solid black" }}
+                <Cardview
+                  onClick={handlecard}
+                  key={item.collision_id}
+                  id={item.collision_id}
                 >
-                  <Cardview
-                    onClick={handlecard}
-                    key={item.collision_id}
-                    id={item.collision_id}
-                  >
-                    <DataView>
-                      Vehicle Type Code 1 :
-                      <Span>{item.vehicle_type_code1}</Span>
-                    </DataView>
-                    <DataView>
-                      Vehicle Type Code 2 :
-                      <Span>{item.vehicle_type_code2}</Span>
-                    </DataView>
-                    <DataView>
-                      Crash Date :<Span>{item.crash_date}</Span>
-                    </DataView>
-                    <DataView>
-                      Crash Time :<Span>{item.crash_time}</Span>
-                    </DataView>
-
-                   
-                  </Cardview>
-                </Link>
+                  <DataView>
+                    Vehicle Type Code 1 :<Span>{item.vehicle_type_code1}</Span>
+                  </DataView>
+                  <DataView>
+                    Vehicle Type Code 2 :<Span>{item.vehicle_type_code2}</Span>
+                  </DataView>
+                  <DataView>
+                    Crash Date :<Span>{item.crash_date}</Span>
+                  </DataView>
+                  <DataView>
+                    Crash Time :<Span>{item.crash_time}</Span>
+                  </DataView>
+                </Cardview>
               );
             })
           ) : (
@@ -148,7 +258,6 @@ function CarCard() {
                   var t = `${hr}:${min}`;
 
                   setTime(t);
-                 
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
