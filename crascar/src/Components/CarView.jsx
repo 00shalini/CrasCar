@@ -23,6 +23,8 @@ function CarView() {
         <TableCharts onClick={handletabview} />
         <Card onClick={handlecardview} />
       </OptionBar>
+
+    {/* to toggle between tabular view and card view */}
       {tabview === true ?<CarTabular /> :   <CarCard />}
       
      
