@@ -5,30 +5,27 @@
 # Table of Contents
 
 * [Installation](#installation)
-* [Libery Used](#libery-used)
+* [TechStacks](#TechStacks)
 
 ## Installation
 
-* git clone **https://github.com/00shalini/whatsapp_clone.git** 
+* git clone **https://github.com/00shalini/CrasCar.git** 
 * npm install
 * npm start
 
 
-## Teck Stacks
+## TechStacks
 
 * Styled Component
 * Material Ui
-* Redux
-* React-redux
-* Firebase
-* express
-* cors
-* Firebase database
 * Html
 * CSS
 * JavaScript
 * React JS
+* Api Requests
+* Axios
 
 ### Glimpse of my work
-![whatsapp](https://github.com/00shalini/whatsapp_clone/blob/master/whatsapp/src/Images/Screenshot%202021-09-17%20091928.jpg)
-![Chat](https://github.com/00shalini/whatsapp_clone/blob/master/whatsapp/src/Images/Screenshot%202021-09-17%20092040.jpg)
+![Main Page](https://github.com/00shalini/CrasCar/blob/master/crascar/src/Components/Images/Screenshot%202021-09-19%20210038.jpg)
+![Data in Card View](https://github.com/00shalini/CrasCar/blob/master/crascar/src/Components/Images/download.png)
+![Data in Tabular View](https://github.com/00shalini/CrasCar/blob/master/crascar/src/Components/Images/download%20(2).png)
