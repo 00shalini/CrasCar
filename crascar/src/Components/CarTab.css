@@ -33,3 +33,16 @@
 .sc-iBPTik htPyiA{
     width: 5px;
 }
+
+.demobtn {
+   
+    width: 20vw;
+    height: 50px;
+    padding: 10px;
+    margin-top: -700px;
+    margin-left: 650px;
+    color: white;
+    z-index:10;
+    font-size: 20px;
+    font-weight: bold;
+}
