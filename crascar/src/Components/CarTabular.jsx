@@ -9,6 +9,8 @@ import DesktopTimePicker from "@mui/lab/DesktopTimePicker";
 import ReactPaginate from "react-paginate";
 import "./CarTab.css";
 
+
+//To see data in tabular format
 function CarTabular() {
   const [car, setCar] = React.useState([]);
   const [value, setValue] = React.useState("");

@@ -22,6 +22,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 
+
+//To view the data in card view
 function CarCard() {
   const style = {
     position: "absolute",
@@ -50,6 +52,8 @@ function CarCard() {
   const BaseUrl = `https://data.cityofnewyork.us/resource/h9gi-nx95.json`;
 
   React.useEffect(() => {
+
+    //to get whole data
     axios
       .get(BaseUrl)
       .then((res) => {
@@ -58,6 +62,7 @@ function CarCard() {
       .catch((err) => console.log(err.message));
   }, []);
 
+  //to get according to crash date and crash time
   const getdata = () => {
     axios
       .get(`${BaseUrl}?crash_date=${value}`)
@@ -74,6 +79,8 @@ function CarCard() {
       .catch((err) => console.log(err.message));
   };
 
+
+  // to get data according to collision id
   const handlecard = (e) => {
     axios
       .get(`${BaseUrl}?collision_id=${e.target.id}`)
@@ -88,6 +95,8 @@ function CarCard() {
       .catch((err) => console.log(err.message));
   };
 
+
+  // for pagination
   const pagecount = Math.ceil(car.length / dataperpage);
 
   const changepage = ({ selected }) => {
@@ -104,6 +113,7 @@ function CarCard() {
   return (
     <Option>
       <Header>AUTOMOBILE CRASH DETAILS</Header>
+      {/* to get the detailed view of the crash */}
       <Details>
         <Modal
           open={open}
@@ -149,7 +159,7 @@ function CarCard() {
                         Cross Street Name:<td>{item.cross_sreet_name}</td>
                       </tr>
                       <tr>
-                        
+
                         Location:<th>Latitude </th>
                         <td>{item.latitude}</td>
                         <th>Longitude</th>
