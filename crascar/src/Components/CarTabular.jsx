@@ -1,50 +1,58 @@
 import React from "react";
-import {
-  OptionBar,
-  Option,
-  View,
-  TableCharts,
-  Card,
-  Select,
-  Details,
-  Table,
-  Filter,
-} from "./CarTab";
+import { Option, Details, Table, Filter, Header } from "./CarTab";
 import axios from "axios";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import DesktopTimePicker from '@mui/lab/DesktopTimePicker';
+import DesktopTimePicker from "@mui/lab/DesktopTimePicker";
+import ReactPaginate from "react-paginate";
+import "./CarTab.css";
 
 function CarTabular() {
-  const BaseUrl = "https://data.cityofnewyork.us/resource/h9gi-nx95.json";
   const [car, setCar] = React.useState([]);
-  const [value, setValue] = React.useState(new Date());
+  const [value, setValue] = React.useState("");
+  const [timing, setTime] = React.useState("");
+  const [pagenum, setPageNum] = React.useState(0);
+  const dataperpage = 10;
+  const pagevisited = pagenum * dataperpage;
+  const displaydata = car.slice(pagevisited, pagevisited + dataperpage);
+  const BaseUrl = `https://data.cityofnewyork.us/resource/h9gi-nx95.json`;
 
   React.useEffect(() => {
     axios
-      .get(
-        `${BaseUrl}?crash_date=${value}&vehicle_type_code2=&$offset=&$limit=${5}`
-      )
+      .get(BaseUrl)
       .then((res) => {
         setCar(res.data);
-      });
+      })
+      .catch((err) => alert(err.message));
   }, []);
+
+  const getdata = () => {
+    axios
+      .get(`${BaseUrl}?crash_date=${value}`)
+      .then((res) => {
+        setCar(res.data);
+      })
+      .catch((err) => alert(err.message));
+
+    axios
+      .get(`${BaseUrl}?crash_time=${timing}`)
+      .then((res) => {
+        setCar(res.data);
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const pagecount = Math.ceil(car.length / dataperpage);
+
+  const changepage = ({ selected }) => {
+    setPageNum(selected);
+  };
+
   return (
     <Option>
-      <OptionBar>
-        <View>SELECT VIEW</View>
-        <TableCharts />
-        <Card />
-        <Select name="Sort By">
-          <option value="select by">Sort By</option>
-          <option value="crash date">Crash Date</option>
-          <option value="crash time">Crash Time</option>
-          <option value="location">Location</option>
-        </Select>
-      </OptionBar>
-      <h4>Automobile Crash Details</h4>
+      <Header>AUTOMOBILE CRASH DETAILS</Header>
       <Details>
         <Table>
           <thead>
@@ -56,16 +64,20 @@ function CarTabular() {
             </tr>
           </thead>
           <tbody>
-            {car.map((item) => {
-              return (
-                <tr>
-                  <td>{item.vehicle_type_code1}</td>
-                  <td>{item.vehicle_type_code2}</td>
-                  <td>{item.crash_date}</td>
-                  <td>{item.crash_time}</td>
-                </tr>
-              );
-            })}
+            {displaydata.length > 0 ? (
+              displaydata.map((item) => {
+                return (
+                  <tr>
+                    <td>{item.vehicle_type_code1}</td>
+                    <td>{item.vehicle_type_code2}</td>
+                    <td>{item.crash_date}</td>
+                    <td>{item.crash_time}</td>
+                  </tr>
+                );
+              })
+            ) : (
+              <h2>no data</h2>
+            )}
           </tbody>
         </Table>
         <Filter>
@@ -76,23 +88,50 @@ function CarTabular() {
                 value={value}
                 minDate={new Date("2000-01-01")}
                 onChange={(newValue) => {
-                  setValue(newValue);
+                  var yyyy = newValue.getFullYear().toString();
+                  var mm = (newValue.getMonth() + 1).toString();
+                  var dd = newValue.getDate().toString();
+                  if (mm < 10) {
+                    mm = `0${mm}`;
+                  }
+
+                  var date = `${yyyy}-${mm}-${dd}T00:00:00.000`;
+
+                  setValue(date);
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                style={{color:'black'}}
+                style={{ color: "black" }}
               />
-               <DesktopTimePicker
-          label="Filter By Crash Time"
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
+              <DesktopTimePicker
+                label="Filter By Crash Time"
+                value={timing}
+                onChange={(newValue) => {
+                  var hr = newValue.getHours().toString();
+                  var min = newValue.getMinutes().toString();
+
+                  var t = `${hr}:${min}`;
+
+                  setTime(t);
+                  console.log(timing);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
             </LocalizationProvider>
+            <button onClick={getdata}>Apply Filter</button>
           </div>
         </Filter>
       </Details>
+      <ReactPaginate
+        previousLabel={"Prev"}
+        nextLabel={"Next"}
+        pageCount={pagecount}
+        onPageChange={changepage}
+        containerClassName={"paginationbttns"}
+        previousLinkClassName={"previousbttns"}
+        nextLinkClassName={"nextbttns"}
+        disabledClassName={"paginationdisabled"}
+        activeClassName={"paginationActive"}
+      />
     </Option>
   );
 }

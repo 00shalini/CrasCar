@@ -1,19 +1,19 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Links, Logo, Nav, NavCont} from './Navbarstyle';
+import {Img, Links, Logo, Nav, NavCont} from './Navbarstyle';
+import crascar from './crascar.png';
 
 function Navbar() {
     return (
         <NavCont>
             <Logo>
-                <img src='' alt='crascar logo'/>
+                <Img src={crascar} alt='crascar logo' />
             </Logo>
             <Nav>
             <Links to='/'>
                 HOME
             </Links>
             <Links to='/carview'>
-               CRASH VIEW
+               CRASH DETAIL
             </Links>
             <Links to='/about'>
                ABOUT

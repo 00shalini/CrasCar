@@ -13,15 +13,16 @@ export const NavCont = styled.div`
 -moz-box-shadow: -3px -1px 23px 5px rgba(9,9,79,0.54);
   display: grid;
   grid-template-columns: repeat(2,1fr);
+  background-color: #737373;
+
 `
 export const Logo = styled.div` 
    width: 30vw;
-   border: 1px solid black;
+
 `
 
 export const Nav = styled.div`
 
- border: 1px solid black;
  width: 70vw;
 padding-left: 80px;
 padding-top: 40px;
@@ -30,9 +31,17 @@ padding-top: 40px;
 
 export const Links = styled(Link)` 
 
-margin-left: 60px;
+margin-left: 80px;
 text-decoration: none;
 color: black;
-font-weight: bolder;
-font-size: 18px;
+font-weight: 600;
+font-size: 16px;
+color: darkgrey;
+`
+
+export const Img = styled.img` 
+
+ width: 100px;
+ padding-left: 50px;
+ padding-top: 20px;
 `
