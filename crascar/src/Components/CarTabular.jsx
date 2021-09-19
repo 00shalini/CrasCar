@@ -1,5 +1,5 @@
 import React from "react";
-import { Option, Details, Table, Filter, Header } from "./CarTab";
+import { Option, Details, Table, Filter, Header, FilterBtn } from "./CarTab";
 import axios from "axios";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -56,20 +56,20 @@ function CarTabular() {
       <Details>
         <Table>
           <thead>
-            <tr>
-              <th>Vehicle_Type_Code_1</th>
-              <th>Vehicle_Type_Code_2</th>
-              <th>Crash_Date</th>
-              <th>Crash_Time</th>
+            <tr style={{textAlign:'center'}}>
+              <th style={{borderBottom:'2px solid navy',height:'40px',padding:'3px 3px'}}>Vehicle_Type_Code_1</th>
+              <th style={{borderBottom:'2px solid navy'}}>Vehicle_Type_Code_2</th>
+              <th style={{borderBottom:'2px solid navy'}}>Crash_Date</th>
+              <th style={{borderBottom:'2px solid navy'}}>Crash_Time</th>
             </tr>
           </thead>
           <tbody>
             {displaydata.length > 0 ? (
               displaydata.map((item) => {
                 return (
-                  <tr>
+                  <tr style={{textAlign:'center',height:'50px'}}>
                     <td>{item.vehicle_type_code1}</td>
-                    <td>{item.vehicle_type_code2}</td>
+                    <td >{item.vehicle_type_code2}</td>
                     <td>{item.crash_date}</td>
                     <td>{item.crash_time}</td>
                   </tr>
@@ -100,7 +100,7 @@ function CarTabular() {
                   setValue(date);
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                style={{ color: "black" }}
+                style={{marginBottom:'40px'}}
               />
               <DesktopTimePicker
                 label="Filter By Crash Time"
@@ -112,12 +112,12 @@ function CarTabular() {
                   var t = `${hr}:${min}`;
 
                   setTime(t);
-                  console.log(timing);
+              
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <button onClick={getdata}>Apply Filter</button>
+            <FilterBtn onClick={getdata}>Apply Filter</FilterBtn>
           </div>
         </Filter>
       </Details>

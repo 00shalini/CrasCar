@@ -5,6 +5,7 @@
     list-style: none;
     display: flex;
     justify-content: center;
+    margin-top: 80px;
 }
 
 .paginationbttns a {
@@ -24,4 +25,7 @@
     background-color: lightgray;
 }
 
-
+.datepicker {
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+}

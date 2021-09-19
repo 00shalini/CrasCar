@@ -7,6 +7,7 @@ import {
   DataView,
   Span,
   Header,
+  FilterBtn,
 } from "./CarTab";
 import axios from "axios";
 import DesktopDatePicker from "@mui/lab/DesktopDatePicker";
@@ -107,10 +108,7 @@ function CarCard() {
                       Crash Time :<Span>{item.crash_time}</Span>
                     </DataView>
 
-                    {/* <CardDetail
-                      style={{ display: "none" }}
-                      collisionid={collisionid}
-                    /> */}
+                   
                   </Cardview>
                 </Link>
               );
@@ -139,7 +137,6 @@ function CarCard() {
                   setValue(date);
                 }}
                 renderInput={(params) => <TextField {...params} />}
-                style={{ color: "black" }}
               />
               <DesktopTimePicker
                 label="Filter By Crash Time"
@@ -151,12 +148,12 @@ function CarCard() {
                   var t = `${hr}:${min}`;
 
                   setTime(t);
-                  console.log(timing);
+                 
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            <button onClick={getdata}>Apply Filter</button>
+            <FilterBtn onClick={getdata}>Apply Filter</FilterBtn>
           </div>
         </Filter>
       </Details>
