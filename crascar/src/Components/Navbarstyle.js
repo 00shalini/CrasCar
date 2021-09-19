@@ -6,7 +6,7 @@ export const NavCont = styled.div`
   width: 100vw;
   height: 90px;
   position: fixed;
-  z-index:900;
+  z-index:10;
   top: 0;
   box-shadow: -3px -1px 23px 5px rgba(9,9,79,0.54);
 -webkit-box-shadow: -3px -1px 23px 5px rgba(9,9,79,0.54);
